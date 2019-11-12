@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mwings.login">
+	
+	<select id="selectMasterInfo" parameterType="map" resultType="map">
+		SELECT TOP 1000 [MCode]
+		      ,[Name]
+		      ,[Num]
+		      ,[Status]
+		      ,[ID]
+		      ,[Password]
+		      ,[LastVisit]
+		      ,[Point]
+		      ,[DisNum]
+		      ,[QRCode]
+		      ,[Phone]
+		      ,[Birth]
+		      ,[Adult]
+		      ,[AdultNum]
+		      ,[ChildNum]
+		      ,[JoinDate]
+		      ,[Address]
+		      ,[EntFlag]
+		      ,[EntTime]
+		      ,[ExtTime]
+		      ,[EntNumber]
+		      ,[Memo]
+		      ,[Picture1]
+		      ,[Picture2]
+		      ,[Picture3]
+		      ,[Picture4]
+		      ,[Picture5]
+		      ,[Withdraw]
+		      ,[WithdrawDate]
+		      ,[WithdrawMemo]
+		      ,[FranchiseeNum]
+		      ,[FranchiseeCode]
+		  FROM [POSDB].[dbo].[MasterInfo]
+        
+	</select>
+	
+	<select id="getFranchiseeInfo" parameterType="map" resultType="map">
+		SELECT LOCALNAME,
+		       FASENAME,
+		       FRANCHISEENUM
+		  FROM FRANCHISEEINFO 
+		 WHERE FRANCHISEENUM = #{FranchiseeNum} 
+		   AND MASTERPASSWORD = #{MasterPassword}
+	</select>
+	
+	<select id="selectLoginMasterInfo" parameterType="kr.co.mwings.vo.MemberVo" resultType="kr.co.mwings.vo.MasterInfoVo">
+		SELECT MCode,
+			   Name,
+			   Num,
+			   Status,
+			   ID,
+			   Password,
+			   LastVisit,
+			   Point,
+			   DisNum,
+			   QRCode,
+			   Phone,
+			   Birth,
+			   Adult,
+			   AdultNum,
+			   ChildNum,
+			   JoinDate,
+			   Address,
+			   EntFlag,
+			   EntTime,
+			   ExtTime,
+			   EntNumber,
+			   Memo,
+			   Picture1,
+			   Picture2,
+			   Picture3,
+			   Picture4,
+			   Picture5,
+			   Withdraw,
+			   WithdrawDate,
+			   WithdrawMemo,
+			   FranchiseeNum,
+			   FranchiseeCode,
+			   EntFranchiseeCode,
+			   Coupon1,
+			   Coupon2,
+			   Coupon3,
+			   SpecialMan,
+			   AgreeFlag,
+			   TermsFlag,
+			   AgreeDate,
+			   Photo 
+		  FROM MasterInfo
+		 WHERE PHONE = #{cellPhone}
+		   AND PASSWORD = #{password} 
+	</select>
+	
+</mapper>

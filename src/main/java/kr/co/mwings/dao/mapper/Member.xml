@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.mwings.member">
+	
+	<select id="selectExistMemberCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*)
+		  FROM MEMBERINFO 
+		 WHERE PHONE = #{phone}
+	</select>
+	
+	<select id="selectPassWord" parameterType="kr.co.mwings.vo.MemberVo" resultType="map">
+		SELECT Password,
+		       Name
+		  FROM MasterInfo 
+		 WHERE PHONE = #{cellPhone}
+		   AND NAME = #{name}
+	</select>
+	
+	<insert id="insertMasterInfo" parameterType="map">
+		INSERT INTO MasterInfo
+			(
+			    MCode,
+			    Phone,
+			    Password,
+			    Name,
+			    QRCode,
+			    Num,
+			    AdultNum,
+			    ChildNum,
+			    JoinDate,
+			    point,
+			    AgreeDate,
+			    FranchiseeNum,
+	    		FranchiseeCode,		
+	    		EntFlag, 
+				TermsFlag 	    
+			)
+			VALUES
+			(
+			    #{MCode},
+			    #{Phone},
+			    #{Password},
+			    #{Name},
+			    #{QRCode},
+			    #{Num},
+			    #{AdultNum},
+			    #{ChildNum},
+			    Convert(CHAR(8), Getdate(), 112),
+			    #{Point},
+			    Convert(varchar(10),Getdate(),112),
+			    'M',
+			    'M',
+			    '0',
+			    '1'			    
+			)
+	</insert>
+	
+	<insert id="insertMemberInfo" parameterType="map">
+    	INSERT INTO MemberInfo
+			(
+			    Name,
+			    MCode,
+			    EntFlag,
+			    MFlag,
+			    JoinDate, 
+			    QRCode,
+			    Adult,
+			    Phone,
+			    Password,
+			    FranchiseeNum,
+	    		FranchiseeCode   
+			)
+			VALUES
+			(
+			    #{Name},
+			    #{MCode},
+			    '0',
+			    #{MFlag},
+			    Convert(CHAR(8), Getdate(), 112),
+			    #{QRCode},
+			    #{Adult},
+			    #{Phone},
+			    #{Password},
+			    'M',
+			    'M'
+			)
+	</insert>
+	
+	<delete id="deleteMasterInfo">
+		DELETE
+		  FROM MasterInfo
+		 WHERE Phone = #{Phone}  
+	</delete>
+		
+	<select id="selectMyMasterInfo" parameterType="kr.co.mwings.vo.MemberVo" resultType="map">
+		SELECT A.MCode,
+			   A.Name,
+			   A.Num,
+			   A.Status,
+			   A.ID,
+			   A.Password,
+			   A.LastVisit,
+			   A.Point,
+			   replace( convert( VARCHAR, convert( MONEY, A.Point ), 1 ), '.00', '' ) cPoint,
+			   A.DisNum,
+			   A.QRCode,
+			   A.Phone,
+			   A.Birth,
+			   A.Adult,
+			   A.AdultNum,
+			   A.ChildNum,
+			   A.JoinDate,
+			   A.Address,
+			   A.EntFlag,
+			   A.EntTime,
+			   A.ExtTime,
+			   A.EntNumber,
+			   A.Memo,
+			   A.Picture1,
+			   A.Picture2,
+			   A.Picture3,
+			   A.Picture4,
+			   A.Picture5,
+			   A.Withdraw,
+			   A.WithdrawDate,
+			   A.WithdrawMemo,
+			   A.FranchiseeNum,
+			   A.FranchiseeCode,
+			   A.EntFranchiseeCode,
+			   A.Coupon1,
+			   A.Coupon2,
+			   A.Coupon3,
+			   A.SpecialMan,
+			   A.AgreeFlag,
+			   A.TermsFlag,
+			   A.AgreeDate,
+			   A.Photo,
+			   CASE WHEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = A.FranchiseeNum) != NULL THEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = A.FranchiseeNum)
+			        WHEN A.FranchiseeNum = 'M' THEN '모바일'
+			        ELSE '슈퍼윙즈키즈카페' END AS fName,
+			   CASE WHEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = A.EntFranchiseeCode) != NULL THEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = A.EntFranchiseeCode)
+			        ELSE '없음' END AS lFname,
+			   (SELECT COUNT(DISTINCT InDate) FROM VisitInfo WHERE MCode = #{mcode}) vistCount      
+		  FROM MasterInfo A
+		 WHERE A.PHONE = #{cellPhone}
+		   AND A.MCODE = #{mcode} 
+	</select>	
+	
+	<update id="changeMasterInfoPassword" parameterType="map">
+		UPDATE MasterInfo
+		   SET PASSWORD = #{newPassword}
+		 WHERE PHONE = #{cellPhone}
+		   AND MCODE = #{mcode}   
+	</update>
+	
+	
+	<select id="selectStoreVisitInfo" parameterType="map" resultType="map">
+		SELECT TOP 10 
+		       InDate,
+		       CONVERT (DATE, InDate) cIndate,
+		       FranchiseeNum,
+		       CASE WHEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = VisitInfo.FranchiseeNum) != NULL THEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = VisitInfo.FranchiseeNum)
+			 	    ELSE '슈퍼윙즈키즈카페' END AS fName,
+			   replace( convert( VARCHAR, convert( MONEY, Price ), 1 ), '.00', '' ) cPrice,
+		       Price
+		  FROM VisitInfo 
+		 WHERE MCode = #{mcode} 
+		 ORDER BY InDate DESC	
+	</select>
+	
+	<select id="selectStoreUseInfo" parameterType="map" resultType="map">
+		SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY InDate) rnum,
+		       InDate,
+		       CONVERT (DATE, InDate) cIndate,
+		       CASE WHEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = VisitInfo.FranchiseeNum) != NULL THEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = VisitInfo.FranchiseeNum)
+			 	        ELSE '슈퍼윙즈키즈카페' END AS fName 
+		  FROM VisitInfo 
+		 WHERE MCode = #{mcode}
+		 ORDER BY InDate DESC
+	</select>
+	
+	<delete id="deleteMasterInfoByMemberOut" parameterType="kr.co.mwings.vo.MemberVo">
+		DELETE
+		  FROM MasterInfo
+		 WHERE PHONE = #{cellPhone}
+		   AND NAME = #{name}
+		   AND PASSWORD = #{password}
+	</delete>
+	
+	<delete id="deleteMemberInfo" parameterType="kr.co.mwings.vo.MemberVo">
+		DELETE
+		  FROM MemberInfo
+		 WHERE PHONE = #{cellPhone}		   
+	</delete>
+	
+	<insert id="insertPointHis" parameterType="map">
+		INSERT INTO PointHis
+		           (
+		            DateTime,
+		            Device,
+		            MCode,
+		            FranchiseeNum,
+		            addminus,
+		            Point,
+		            Satff,
+		            comment
+		           )
+		           VALUES
+		           (
+		            GETDATE(),
+		            #{device},
+		            #{MCode},
+		            'M',
+		            #{addMinus},
+		            #{point},
+		            #{satff},
+		            #{comment}
+		           )
+	</insert>
+	
+	<delete id="deleteMultiticketSalesUse" parameterType="map">
+		DELETE
+		  FROM MultiTicketSalesUse
+		 WHERE MCode = #{MCode}
+	</delete>
+	
+	<select id="selectPointUseList" parameterType="map" resultType="map"> 
+	 SELECT indate,
+	 	    CONVERT (DATE, left(indate,8)) cIndate,
+	        goodsname,
+	        replace( convert( VARCHAR, convert( MONEY, replace(price,'-','') ), 1 ), '.00', '' ) cPrice,
+	        replace(price,'-','') price,
+	        franchiseeNum,
+	        CASE WHEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = goodssaleinfo.FranchiseeNum) != NULL THEN (SELECT FaseName FROM FranchiseeInfo WHERE FranchiseeNum = goodssaleinfo.FranchiseeNum)
+			     WHEN goodssaleinfo.FranchiseeNum = 'M' THEN '모바일'
+			     ELSE '슈퍼윙즈키즈카페' END AS fName
+       FROM goodssaleinfo        
+      WHERE MCode = #{MCode}
+        AND GoodsName LIKE'%Point사용%'
+	</select>
+					
+</mapper>
