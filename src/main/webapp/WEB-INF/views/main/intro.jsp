@@ -89,10 +89,10 @@
 		              </a>
 	              </c:when>
 	              <c:otherwise>
-		              <a href="/customer/complain.view" class="close-panel">
-			              <img src="/resources/images/icons/black/contact.png"/>
-			              <span>고객센터</span>
-		              </a>
+<!-- 		              <a href="/customer/complain.view" class="close-panel"> -->
+<!-- 			              <img src="/resources/images/icons/black/contact.png"/> -->
+<!-- 			              <span>고객센터</span> -->
+<!-- 		              </a> -->
 	              </c:otherwise>
               </c:choose>
           </li>
@@ -270,10 +270,10 @@
                 	</a>
                 	</c:when>
                 	<c:otherwise>
-                	<a href="/customer/complain.view">
-	                	<img src="/resources/images/icons/black/contact.png"/>
-	                	<span>고객센터</span>
-                	</a>
+<!--                 	<a href="/customer/complain.view"> -->
+<!-- 	                	<img src="/resources/images/icons/black/contact.png"/> -->
+<!-- 	                	<span>고객센터</span> -->
+<!--                 	</a> -->
                 	</c:otherwise>
                 	</c:choose>
                 </li>
