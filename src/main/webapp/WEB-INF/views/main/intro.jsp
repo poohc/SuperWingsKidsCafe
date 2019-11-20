@@ -81,10 +81,20 @@
           	  </a>
           </li>
           <li>
-          	  <a href="/customer/complain.view" class="close-panel">
-	          	  <img src="/resources/images/icons/black/contact.png"/>
-	          	  <span>고객센터</span>
-          	   </a>
+          	  <c:choose>
+	              <c:when test="${empty sessionScope.masterInfoVo}">
+		              <a href="/member/termsAgree.view" class="close-panel">
+			              <img src="/resources/images/icons/black/rocket.png"/>
+			              <span>회원가입</span>
+		              </a>
+	              </c:when>
+	              <c:otherwise>
+		              <a href="/customer/complain.view" class="close-panel">
+			              <img src="/resources/images/icons/black/contact.png"/>
+			              <span>고객센터</span>
+		              </a>
+	              </c:otherwise>
+              </c:choose>
           </li>
           <span style="font-size: 10px;">
           	<center>©FunnyFlux/Alpha/EBS,SW3</center>
@@ -154,9 +164,9 @@
                 <div class="swiper-slide">
                   <img src="/resources/images/slider/slide1.jpg" alt="" title="" />
                   <div class="slider-caption">
-                    <h2 data-swiper-parallax="-100%">오픈안내<c:out value="${needLogin}" /></h2><br>
-                    <span class="subtitle" data-swiper-parallax="-60%">영통점 그랜드오픈</span>
-                    <p>수원 롯데마트 영통점 5층</p>
+                    <h2 data-swiper-parallax="-100%">신규매장안내</h2><br>
+                    <span class="subtitle" data-swiper-parallax="-60%">영통점 11월 22일 그랜드오픈</span>
+                    <p>수원 롯데마트 영통점 3층</p>
                   </div>
                 </div>
                 <div class="swiper-slide"><img src="/resources/images/slider/slide2.jpg"/></div>
@@ -252,10 +262,20 @@
                 	</a>
                 </li>
                 <li>
+                	<c:choose>
+                	<c:when test="${empty sessionScope.masterInfoVo}">
+                	<a href="/member/termsAgree.view">
+	                	<img src="/resources/images/icons/black/rocket.png"/>
+	                	<span>회원가입</span>
+                	</a>
+                	</c:when>
+                	<c:otherwise>
                 	<a href="/customer/complain.view">
 	                	<img src="/resources/images/icons/black/contact.png"/>
 	                	<span>고객센터</span>
                 	</a>
+                	</c:otherwise>
+                	</c:choose>
                 </li>
               </ul>
             </nav>

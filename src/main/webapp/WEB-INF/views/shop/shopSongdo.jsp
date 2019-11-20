@@ -19,7 +19,9 @@
         
         <div id="pages_maincontent">
           <h2 class="page_title">슈퍼윙스키즈카페 송도점</h2>
-          <a href="shop" class="backtoshop"><img src="/resources/images/icons/black/back.png" /></a>
+          <a href="/shop/shopIntroduce.view" class="backtoshop">
+          	<img src="/resources/images/icons/black/back.png" />
+          </a>
           <div class="page_single layout_fullwidth_padding">
             <div class="shop_item">
               <div class="shop_thumb">

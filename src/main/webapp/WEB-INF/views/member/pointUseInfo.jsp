@@ -25,23 +25,23 @@
 							포인트 <span>${masterInfo.cPoint}</span>
 						</H5>
 						<div class="buttons-row">
-							<a href="#tab1" class="tab-link active button">포인트적립</a>
+							<a href="#tab1" class="tab-link active button">포인트사용내역</a>
 						</div>
 						<div class="tabs-animated-wrap">
 							<div class="tabs">
 								<div id="tab1" class="tab active">
 									<ul class="responsive_table">
 										<li class="table_row">
-											<div class="table_section_14">날짜</div>
+<!-- 											<div class="table_section_14">날짜</div> -->
 											<div class="table_section_14">구분</div>
 											<div class="table_section_14">적립금</div>
-											<div class="table_section_14">업무매장</div>
+											<div class="table_section_14">이용매장</div>
 										</li>
 										<c:choose>
 										<c:when test="${not empty pointUseList}">
 											<c:forEach items="${pointUseList}" var="pointUseList">
 											<li class="table_row">
-												<div class="table_section_14">${pointUseList.cIndate}</div>
+<%-- 												<div class="table_section_14">${pointUseList.cIndate}</div> --%>
 												<div class="table_section_14">${pointUseList.goodsname}</div>
 												<div class="table_section_14">${pointUseList.cPrice}</div>
 												<div class="table_section_14">${pointUseList.fName}</div>
@@ -49,7 +49,7 @@
 											</c:forEach>
 										</c:when>
 										<c:otherwise>
-											<div class="table_section_14" style="width: 100%;text-align: center;">포인트 사용이력이 없습니다.</div>
+											<div class="table_section_14" style="width: 100%;text-align: center;">포인트 사용내역이 없습니다.</div>
 										</c:otherwise>
 										</c:choose>
 									</ul>

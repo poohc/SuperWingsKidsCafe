@@ -31,4 +31,31 @@ public class ShopController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "shopAnyang.view", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView shopAnyang(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/shop/shopAnyang");
+		return mav;
+	}
+	
+	@RequestMapping(value = "shopChuchu.view", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView shopChuchu(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/shop/shopChuchu");
+		return mav;
+	}
+	
+	@RequestMapping(value = "shopJeju.view", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView shopJeju(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/shop/shopJeju");
+		return mav;
+	}
+	
+	@RequestMapping(value = "shopYoungtong.view", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView shopYoungtong(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/shop/shopYoungtong");
+		return mav;
+	}
 }
