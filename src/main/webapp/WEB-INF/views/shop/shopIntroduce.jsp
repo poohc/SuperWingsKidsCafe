@@ -120,10 +120,10 @@
 									<h4>
 										<a href="">슈퍼윙스키즈카페 영통점</a>
 									</h4>
-									<div class="shop_item_price">신규오픈 11월22일</div>
+									<div class="shop_item_price">경기 수원 영통 봉영로 1579</div>
 									<div class="item_qnty_shop">
 										<form id="myform" method="POST" action="#">
-											<input type="text" name="quantity" value="---" class="qntyshop" disabled />
+											<input type="text" name="quantity" value="OPEN" class="qntyshop" disabled />
 										</form>
 									</div>
 									<a href="tel:031-205-3355" id="addtocart">031-205-3355</a>

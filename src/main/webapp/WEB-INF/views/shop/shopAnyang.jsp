@@ -30,7 +30,7 @@
 								<div class="shop_item_price">OPEN</div>
 							</div>
 							<div class="shop_item_details">
-								<h3>경기 안양시 관막대로 103,13층</h3>
+								<h3>경기 안양시 관악대로 103,13층</h3>
 								<p>안양최대 규모 슈퍼윙스키즈카페 안양점입니다.</p>
 								<p>
 									<strong>운영시간:</strong>10:00~20:00(연중무휴)
@@ -52,7 +52,6 @@
 										<li><a rel="gallery-3" href="/resources/images/anyang/5.jpg" title="전경" class="swipebox"><img src="/resources/images/anyang/5.jpg" /></a></li>
 										<li><a rel="gallery-3" href="/resources/images/anyang/6.jpg" title="전경" class="swipebox"><img src="/resources/images/anyang/6.jpg" /></a></li>
 									</ul>
-									/resources/
 								</div>
 								<h3>약도</h3>
 								<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3169.6106772899047!2d126.9330157!3d37.3990384!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b60b8531f04d1%3A0xd99444dc256a392c!2z6rK96riw64-EIOyViOyWkeyLnCDrj5nslYjqtawg67mE7IKw64-ZIOq0gOyVheuMgOuhnCAxMDM!5e0!3m2!1sko!2skr!4v1574242024956!5m2!1sko!2skr" width=100% height="450" frameborder="0" style="border: 0;" allowfullscreen=""></iframe>

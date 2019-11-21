@@ -24,7 +24,7 @@
 					<div class="page_single layout_fullwidth_padding">
 						<div class="shop_item">
 							<div class="shop_thumb">
-								<a rel="gallery-3" href="/resources/images/yt/title.jpg" title="추추파크점 전경" class="swipebox">
+								<a rel="gallery-3" href="/resources/images/yt/title.jpg" title="영통점 전경" class="swipebox">
 									<img src="/resources/images/yt/title.jpg" />
 								</a>
 								<div class="shop_item_price">OPEN</div>

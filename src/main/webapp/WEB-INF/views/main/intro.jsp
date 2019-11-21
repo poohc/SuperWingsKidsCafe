@@ -11,7 +11,7 @@
 		if('${sessionScope.masterInfoVo.MCode}' != ''){
 			$('#qrcode').empty();
 			
-			var qrCode = '${sessionScope.masterInfoVo.MCode}';
+			var qrCode = '${sessionScope.masterInfoVo.QRCode}';
 			jQuery('#qrcode').qrcode({
 				width: 225,
 				height: 225,
